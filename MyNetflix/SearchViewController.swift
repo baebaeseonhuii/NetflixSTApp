@@ -56,7 +56,10 @@ extension SearchViewController: UICollectionViewDelegate {
         
         let movie = movies[indexPath.item]
         
+        let sb = UIStoryboard(name: "Player", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
         
+        present(vc, animated: false, completion: nil)
         
     }
 }
