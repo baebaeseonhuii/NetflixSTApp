@@ -41,18 +41,23 @@ class HomeViewController: UIViewController {
     
 
     @IBAction func playButtonTapped(_ sender: Any) {
-//        SearchAPI.search("interstella") { movies in
-//            guard let interstella = movies.first else { return }
-//            DispatchQueue.main.async {
-//                let url = URL(string: interstella.previewURL)!
-//                let item = AVPlayerItem(url: url)
-//                
-//                let sb = UIStoryboard(name: "Player", bundle: nil)
-//                let vc = sb.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
-//                vc.modalPresentationStyle = .fullScreen
-//                vc.player.replaceCurrentItem(with: item)
-//                self.present(vc, animated: false, completion: nil)
-//            }
-//        }
+        // bring data about interstella to searchAPI
+        // bring an object from the API
+        // using the object, pop PlayerViewController
+        
+        SearchAPI.search("interstella") { movies in
+            guard let interstella = movies.first else { return }
+            
+            DispatchQueue.main.async {
+                let url = URL(string: interstella.previewURL)!
+                let item = AVPlayerItem(url: url)
+                let sb = UIStoryboard(name: "Player", bundle: nil)
+                let vc = sb.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
+                vc.player.replaceCurrentItem(with: item)
+                
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: false, completion: nil)
+            }
+        }
     }
 }
